@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.filecontrol">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <permission
+        android:name="com.example.filecontrol.TURNAPP_PERMISSION"
+        android:label="Needed for Permission"
+        android:description="@string/custom_permission_description"
+        android:protectionLevel="dangerous"/>
+
+    <permission
+        android:name="com.example.filecontrol.BIND_SERVICE"
+        android:label="Need filecontrol app permission"
+        android:description="@string/custom_service_permission"
+        android:protectionLevel="dangerous" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FileControl"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:permission="com.example.filecontrol.TURNAPP_PERMISSION">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.FILE_CONTROL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <service android:name=".RandomService" android:exported="true"
+            android:permission="com.example.filecontrol.BIND_SERVICE"/>
+
+    </application>
+
+</manifest>
